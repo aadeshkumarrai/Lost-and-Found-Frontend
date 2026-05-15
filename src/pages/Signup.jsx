@@ -11,28 +11,57 @@ export default function Signup() {
   const handleChange = (e) =>
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("API_URL:", API_URL); // Debug line
-  console.log("Sending to:", `${API_URL}/api/signup`); // Debug line
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log("API_URL:", API_URL); // Debug line
+  // console.log("Sending to:", `${API_URL}/api/signup`); // Debug line
   
-    try {
-      const res = await fetch(`${API_URL}/api/signup`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        alert("Signup successful. Please login.");
-        navigate("/login");
-      } else {
-        alert(data.error || "Signup failed");
-      }
-    } catch (err) {
-      alert(err.message);
+  //   try {
+  //     const res = await fetch(`${API_URL}/api/signup`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(form),
+  //     });
+  //     const data = await res.json();
+  //     if (res.ok) {
+  //       alert("Signup successful. Please login.");
+  //       navigate("/login");
+  //     } else {
+  //       alert(data.error || "Signup failed");
+  //     }
+  //   } catch (err) {
+  //     alert(err.message);
+  //   }
+  // };
+
+
+
+
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  console.log("LIVE API URL:", API_URL);
+
+  try {
+    const res = await fetch(`${API_URL}/api/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert("Signup successful. Please login.");
+      navigate("/login");
+    } else {
+      alert(data.error || "Signup failed");
     }
-  };
+  } catch (err) {
+    alert(err.message);
+  }
+};
 
   return (
     <form
