@@ -13,6 +13,9 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("API_URL:", API_URL); // Debug line
+  console.log("Sending to:", `${API_URL}/api/signup`); // Debug line
+  
     try {
       const res = await fetch(`${API_URL}/api/signup`, {
         method: "POST",
